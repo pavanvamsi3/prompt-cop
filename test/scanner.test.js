@@ -249,7 +249,7 @@ describe('Edge cases and error handling', () => {
   });
 
   test('handles multiple encodings in same line', async () => {
-    const content = 'Mixed: SGVsbG8= and 48656c6c6f and %3Cscript%3E';
+    const content = 'Mixed: SGVsbG8gV29ybGQhIQ== and 48656c6c6f20576f726c64 and %3Cscript%3Ealert%28%27XSS%27%29%3C%2Fscript%3E';
     const results = scanContent(content, 'mixed.txt');
     
     const types = results.map(r => r.type);
