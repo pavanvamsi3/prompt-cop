@@ -1,0 +1,41 @@
+{
+  "name": "prompt-cop",
+  "version": "1.0.0",
+  "description": "A lightweight security tool to detect potential prompt injection vulnerabilities in code files",
+  "main": "index.js",
+  "bin": {
+    "prompt-cop": "./cli.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "security",
+    "prompt-injection",
+    "vulnerability-scanner",
+    "code-analysis",
+    "cli"
+  ],
+  "author": "pavanvamsi3",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pavanvamsi3/prompt-cop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pavanvamsi3/prompt-cop/issues"
+  },
+  "homepage": "https://github.com/pavanvamsi3/prompt-cop#readme"
+}
