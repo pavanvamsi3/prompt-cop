@@ -60,7 +60,8 @@ jobs:
         fi
         
         # Parse and check vulnerabilities
-        VULN_COUNT=$(cat security-results.json | jq -r '.vulnerabilities | length' 2>/dev/null || echo "0")
+        # Extract vulnerability count (default to 0 if jq fails)
+        VULN_COUNT=$(jq -r '.vulnerabilities | length // 0' security-results.json 2>/dev/null || echo "0")
         echo "Vulnerabilities found: $VULN_COUNT"
         
         if [ "$VULN_COUNT" != "0" ] && [ "$VULN_COUNT" != "null" ]; then
