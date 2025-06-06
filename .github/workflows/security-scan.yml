@@ -64,7 +64,7 @@ jobs:
         echo "Vulnerabilities found: $VULN_COUNT"
         
         if [ "$VULN_COUNT" != "0" ] && [ "$VULN_COUNT" != "null" ]; then
-          echo "::warning::🚨 Security vulnerabilities detected!"
+          echo "::error::🚨 Security vulnerabilities detected!"
           echo "Details:"
           cat security-results.json | jq '.vulnerabilities[] | {file: .file, line: .line, severity: .severity, reason: .reason, content: .content}'
           
@@ -74,9 +74,9 @@ jobs:
           cat security-results.json | jq -r '"Files scanned: " + (.filesScanned | tostring)'
           cat security-results.json | jq -r '"Total vulnerabilities: " + (.vulnerabilities | length | tostring)'
           
-          # This is expected for our test files, so we'll show but not fail
+          # This is expected for our test files, so we'll show but still fail
           echo "::notice::These detections are expected from test files and demonstrate that prompt-cop is working correctly!"
-          exit 0
+          exit 1
         else
           echo "::notice::✅ No security vulnerabilities found"
           exit 0
