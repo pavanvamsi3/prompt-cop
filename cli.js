@@ -50,7 +50,13 @@ program
       }
 
       // Perform scan
-      console.log(chalk.blue(`\nScanning ${resolvedPath}...\n`));
+      const scanMsg = chalk.blue(`\nScanning ${resolvedPath}...\n`);
+      if (options.json) {
+        // Write progress message to stderr so JSON output stays clean
+        console.error(scanMsg);
+      } else {
+        console.log(scanMsg);
+      }
       
       const results = await scan(resolvedPath, scanOptions);
       
