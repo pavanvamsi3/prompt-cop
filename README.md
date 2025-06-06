@@ -198,11 +198,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 MIT
-
-## Security
-
-If you discover a security vulnerability within prompt-cop itself, please send an email to security@example.com instead of using the issue tracker.
-
-## Acknowledgments
-
-This tool is designed to help developers identify potential security risks in their codebases. However, it should not be considered a complete security solution. Always follow security best practices and perform thorough security reviews.
