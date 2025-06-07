@@ -1,6 +1,13 @@
-# prompt-cop
+# Prompt Cop
 
-prompt-cop scans text files in your project for potential **prompt injection vulnerabilities**. Use it from the command line or as a library in your tooling.
+<p align="center">
+  <img src="assets/logo.png" width="300">
+</p>
+
+
+A light weight library prompt-cop scans text files in your project for potential **prompt injection vulnerabilities**.
+
+Use it from the command line or as a library in your tooling.
 
 ## Features
 
