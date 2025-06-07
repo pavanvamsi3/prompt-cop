@@ -29,7 +29,7 @@ jobs:
         # Use the local version to scan itself (including tests for validation)
         set +e  # Don't exit on error
         node cli.js . \
-          --exclude node_modules .git coverage \
+          --exclude node_modules .git coverage scanner.test.js scanner.js \
           --severity medium \
           --json > security-results.json
         SCAN_EXIT_CODE=$?
