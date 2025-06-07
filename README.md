@@ -9,6 +9,13 @@ A light weight library prompt-cop scans text files in your project for potential
 
 Use it from the command line or as a library in your tooling.
 
+### Prompt Injection Example in GPT
+--------------
+
+<p align="center">
+  <img src="assets/chat-gpt-injection.png" width="1000">
+</p>
+
 ## Features
 
 - Scan files or directories recursively
