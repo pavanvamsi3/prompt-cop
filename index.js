@@ -43,9 +43,19 @@ function scanContent(content, filename = 'unknown') {
   return scanner.scanContent(content, filename);
 }
 
+/**
+ * Scan text content using AI model
+ * @param {string} content
+ * @param {string} filename
+ */
+async function scanContentAI(content, filename = 'unknown') {
+  return scanner.scanContentAI(content, filename);
+}
+
 module.exports = {
   scan,
   scanContent,
+  scanContentAI,
   // Export severity levels for external use
   SEVERITY: scanner.SEVERITY
 };

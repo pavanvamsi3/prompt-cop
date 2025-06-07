@@ -22,6 +22,7 @@ program
   .option('-i, --include <extensions...>', 'File extensions to include (e.g., .md .yml)')
   .option('-e, --exclude <patterns...>', 'Patterns to exclude (e.g., node_modules)')
   .option('-s, --severity <level>', 'Minimum severity level to report (low, medium, high)', 'low')
+  .option('-a, --ai', 'Use Hugging Face model for detection')
   .action(async (targetPath, options) => {
     try {
       // Resolve path
@@ -41,7 +42,8 @@ program
         json: options.json,
         include: options.include,
         exclude: options.exclude || [],
-        minSeverity: options.severity.toLowerCase()
+        minSeverity: options.severity.toLowerCase(),
+        ai: options.ai
       };
 
       // Add common exclude patterns
