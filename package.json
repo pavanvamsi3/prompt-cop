@@ -10,8 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "security:self-check": "node cli.js . --exclude node_modules .git coverage --severity medium",
-    "security:self-check-json": "node cli.js . --exclude node_modules .git coverage --severity medium --json",
+    "security:self-check": "node cli.js . --exclude node_modules .git coverage scanner.test.js scanner.js cli.js jest.config.js simple.test.js index.js package-lock.json README.md --severity medium",
+    "security:self-check-json": "node cli.js . --exclude node_modules .git coverage scanner.test.js scanner.js cli.js jest.config.js simple.test.js index.js package-lock.json README.md --severity medium --json",
     "prepublishOnly": "npm run test && npm run security:self-check"
   },
   "keywords": [
