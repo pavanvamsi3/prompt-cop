@@ -3,6 +3,10 @@ const { scan } = require('../index');
 const fs = require('fs').promises;
 const path = require('path');
 const os = require('os');
+jest.mock('../lib/huggingface', () => ({
+  detectPromptInjection: jest.fn(async () => ({ score: 0.9 }))
+}));
+const { scanContentAI } = require('../lib/scanner');
 
 describe('Scanner Core Functionality', () => {
   describe('scanContent', () => {
@@ -387,5 +391,12 @@ Line 5 with Base64: SGVsbG8gV29ybGQgVGVzdGluZw==`;
     expect(base64Result).toBeDefined();
     expect(commentResult.line).toBe(3);
     expect(base64Result.line).toBe(5);
+  });
+
+  test('AI scan adds vulnerability when model flags text', async () => {
+    const content = 'This should be flagged by the model.';
+    const results = await scanContentAI(content, 'ai.md');
+    const aiResult = results.find(r => r.type === 'aiPromptDetection');
+    expect(aiResult).toBeDefined();
   });
 });

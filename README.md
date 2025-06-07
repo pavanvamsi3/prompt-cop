@@ -7,6 +7,7 @@ prompt-cop scans text files in your project for potential **prompt injection vul
 - Scan files or directories recursively
 - Works with Markdown, YAML, JSON, JS/TS, and more
 - Detect hidden comments, obfuscation, Unicode tricks, and other injection patterns
+- Optional Hugging Face AI detection of prompt injections
 - Output results as color-coded text or JSON
 - Customize include/exclude patterns and severity filtering
 
@@ -63,6 +64,7 @@ prompt-cop ./src --no-recursive
 - `-i, --include <extensions...>` - File extensions to include (e.g., .md .yml)
 - `-e, --exclude <patterns...>` - Patterns to exclude (e.g., node_modules)
 - `-s, --severity <level>` - Minimum severity level to report (low, medium, high)
+- `-a, --ai` - Use Hugging Face model for detection (requires HF_ACCESS_TOKEN)
 
 ### Programmatic API
 
@@ -76,7 +78,8 @@ async function checkVulnerabilities() {
       recursive: true,
       exclude: ['node_modules', 'dist'],
       include: ['.md', '.yml'],
-      json: true
+      json: true,
+      ai: true
     });
     
     console.log(`Files scanned: ${results.filesScanned}`);
@@ -93,6 +96,7 @@ async function checkVulnerabilities() {
 // Scan text content directly
 const content = '<!-- Hidden comment --> Some text';
 const vulnerabilities = scanContent(content, 'example.md');
+const aiVulnerabilities = await scanContentAI(content, 'example.md');
 ```
 
 ## Examples of Detected Vulnerabilities

@@ -18,6 +18,7 @@ describe('Scanner Module', () => {
   test('should export required functions', () => {
     expect(scanner.scan).toBeDefined();
     expect(scanner.scanContent).toBeDefined();
+    expect(scanner.scanContentAI).toBeDefined();
     expect(scanner.SEVERITY).toBeDefined();
   });
 
