@@ -4,19 +4,11 @@ prompt-cop scans text files in your project for potential **prompt injection vul
 
 ## Features
 
-- **Comprehensive Scanning**: Scan individual files or entire directories recursively
-- **Multiple File Types**: Supports Markdown, YAML, JSON, JavaScript, TypeScript, and more
-- **Advanced Detection**:
-  - Hidden or suspicious comments (HTML, block, line comments)
-  - Obfuscated strings (Base64, Hex encodings)
-  - Unusual Unicode patterns (zero-width characters, invisible characters)
-  - Suspicious markdown/HTML embeddings
-  - Common prompt injection patterns
-- **Flexible Reporting**:
-  - Color-coded CLI output with severity levels
-  - JSON format for CI/CD integration
-  - Detailed vulnerability information (file, line number, reason)
-- **Highly Configurable**: Include/exclude patterns, severity filtering
+- Scan files or directories recursively
+- Works with Markdown, YAML, JSON, JS/TS, and more
+- Detect hidden comments, obfuscation, Unicode tricks, and other injection patterns
+- Output results as color-coded text or JSON
+- Customize include/exclude patterns and severity filtering
 
 ## Installation
 
