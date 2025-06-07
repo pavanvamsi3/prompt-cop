@@ -6,7 +6,7 @@ const os = require('os');
 jest.mock('../lib/huggingface', () => ({
   detectPromptInjection: jest.fn(async () => ({ score: 0.9 }))
 }));
-const { scanContentAI } = require('../lib/scanner');
+const { scanContentAI } = require('../index');
 
 describe('Scanner Core Functionality', () => {
   describe('scanContent', () => {
