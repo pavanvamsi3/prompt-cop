@@ -7,13 +7,13 @@ const fs = require('fs').promises;
 const { scan } = require('./index');
 
 // Package information
-const package = require('./package.json');
+const pkg = require('./package.json');
 
 // Configure CLI
 program
   .name('prompt-cop')
   .description('Detect potential prompt injection vulnerabilities in code files')
-  .version(package.version);
+  .version(pkg.version);
 
 program
   .argument('<path>', 'File or directory to scan')

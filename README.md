@@ -1,24 +1,18 @@
-# prompt-cop 🚨
+# prompt-cop
 
-A lightweight, security-focused npm package designed to detect potential **prompt injection vulnerabilities** within textual code files.
+prompt-cop scans text files in your project for potential **prompt injection vulnerabilities**. Use it from the command line or as a library in your tooling.
 
 ## Features
 
-- 🔍 **Comprehensive Scanning**: Scan individual files or entire directories recursively
-- 📝 **Multiple File Types**: Supports Markdown, YAML, JSON, JavaScript, TypeScript, and more
-- 🎯 **Advanced Detection**:
-  - Hidden or suspicious comments (HTML, block, line comments)
-  - Obfuscated strings (Base64, Hex encodings)
-  - Unusual Unicode patterns (zero-width characters, invisible characters)
-  - Suspicious markdown/HTML embeddings
-  - Common prompt injection patterns
-- 📊 **Flexible Reporting**:
-  - Color-coded CLI output with severity levels
-  - JSON format for CI/CD integration
-  - Detailed vulnerability information (file, line number, reason)
-- ⚙️ **Highly Configurable**: Include/exclude patterns, severity filtering
+- Scan files or directories recursively
+- Works with Markdown, YAML, JSON, JS/TS, and more
+- Detect hidden comments, obfuscation, Unicode tricks, and other injection patterns
+- Output results as color-coded text or JSON
+- Customize include/exclude patterns and severity filtering
 
 ## Installation
+
+Requires Node.js 14 or higher.
 
 ```bash
 npm install -g prompt-cop
