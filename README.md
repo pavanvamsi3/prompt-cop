@@ -129,6 +129,10 @@ const aiVulnerabilities = await scanContentAI(content, 'example.md');
 ```
 ## Terminal Examples
 
+<p align="center">
+  <img src="assets/prompt_cop_terminal.png" width="800" height="400">
+</p>
+
 ## Examples of Detected Vulnerabilities
 Refer to [Prompt Injection Examples](assets/injection-examples.md)
 ## Integration with CI/CD
