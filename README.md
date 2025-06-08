@@ -9,6 +9,13 @@ A light weight library prompt-cop scans text files in your project for potential
 
 Use it from the command line or as a library in your tooling.
 
+### Quick Terminal Demo
+--------------
+
+<p align="center">
+  <img src="assets/prompt-cop-terminal.gif" width="1000" height="500">
+</p>
+
 ### Prompt Injection Example in GPT
 --------------
 
@@ -127,11 +134,6 @@ const content = '<!-- Hidden comment --> Some text';
 const vulnerabilities = scanContent(content, 'example.md');
 const aiVulnerabilities = await scanContentAI(content, 'example.md');
 ```
-## Terminal Examples
-
-<p align="center">
-  <img src="assets/prompt_cop_terminal.png" width="800" height="400">
-</p>
 
 ## Examples of Detected Vulnerabilities
 Refer to [Prompt Injection Examples](assets/injection-examples.md)
