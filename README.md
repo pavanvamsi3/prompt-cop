@@ -136,7 +136,8 @@ const aiVulnerabilities = await scanContentAI(content, 'example.md');
 ```
 
 ## Examples of Detected Vulnerabilities
-Refer to [Prompt Injection Examples](assets/injection-examples.md)
+Refer to [Prompt Injection Examples](docs/injection-examples.md)
+
 ## Integration with CI/CD
 
 Use prompt-cop in your CI/CD pipeline to automatically check for vulnerabilities:
