@@ -9,6 +9,8 @@ A light weight library prompt-cop scans text files in your project for potential
 
 Use it from the command line or as a library in your tooling.
 
+https://www.npmjs.com/package/prompt-cop
+
 ### Quick Terminal Demo
 --------------
 
