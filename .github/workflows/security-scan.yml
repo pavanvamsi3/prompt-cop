@@ -1,0 +1,92 @@
+name: Security Scan - Self Check
+
+on:
+  pull_request:
+    branches: [ main, master ]
+    types: [opened, synchronize, reopened]
+  # Note: Intentionally excludes push to main/master to avoid noise from test files
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run self security scan
+      id: security_scan
+      run: |
+        # Use the local version to scan itself (including tests for validation)
+        set +e  # Don't exit on error
+        node cli.js . \
+          --exclude node_modules .git coverage scanner.test.js scanner.js cli.js jest.config.js simple.test.js index.js package-lock.json README.md injection-examples.md \
+          --severity medium \
+          --json > security-results.json
+        SCAN_EXIT_CODE=$?
+        echo "scan_exit_code=$SCAN_EXIT_CODE" >> $GITHUB_OUTPUT
+        
+        # Always show the scan results file for debugging
+        echo "=== Raw scan results ==="
+        if [ -f security-results.json ]; then
+          cat security-results.json
+        else
+          echo "No security-results.json file created"
+        fi
+        echo "========================"
+    
+    - name: Display results
+      run: |
+        echo "Scan exit code: ${{ steps.security_scan.outputs.scan_exit_code }}"
+        
+        if [ ! -f security-results.json ]; then
+          echo "::error::No scan results file found!"
+          exit 1
+        fi
+        
+        # Check if file is empty or invalid JSON
+        if [ ! -s security-results.json ]; then
+          echo "::error::Scan results file is empty!"
+          exit 1
+        fi
+        
+        # Parse and check vulnerabilities
+        # Extract vulnerability count (default to 0 if jq fails)
+        VULN_COUNT=$(jq -r '.vulnerabilities | length // 0' security-results.json 2>/dev/null || echo "0")
+        echo "Vulnerabilities found: $VULN_COUNT"
+        
+        if [ "$VULN_COUNT" != "0" ] && [ "$VULN_COUNT" != "null" ]; then
+          echo "::error::🚨 Security vulnerabilities detected!"
+          echo "Details:"
+          cat security-results.json | jq '.vulnerabilities[] | {file: .file, line: .line, severity: .severity, reason: .reason, content: .content}'
+          
+          # Show summary
+          echo ""
+          echo "📊 Summary:"
+          cat security-results.json | jq -r '"Files scanned: " + (.filesScanned | tostring)'
+          cat security-results.json | jq -r '"Total vulnerabilities: " + (.vulnerabilities | length | tostring)'
+          
+          # This is expected for our test files, so we'll show but still fail
+          echo "::notice::These detections are expected from test files and demonstrate that prompt-cop is working correctly!"
+          exit 1
+        else
+          echo "::notice::✅ No security vulnerabilities found"
+          exit 0
+        fi
+    
+    - name: Upload scan results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: prompt-cop-self-scan-results
+        path: security-results.json
+        retention-days: 30

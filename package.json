@@ -1,0 +1,45 @@
+{
+  "name": "prompt-cop",
+  "version": "1.0.3",
+  "description": "A lightweight security tool to detect potential prompt injection vulnerabilities in code files",
+  "main": "index.js",
+  "bin": {
+    "prompt-cop": "./cli.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "security:self-check": "node cli.js . --exclude node_modules .git coverage scanner.test.js scanner.js cli.js jest.config.js simple.test.js index.js package-lock.json README.md injection-examples.md test-*.md test-*.js --severity medium",
+    "security:self-check-json": "node cli.js . --exclude node_modules .git coverage scanner.test.js scanner.js cli.js jest.config.js simple.test.js index.js package-lock.json README.md injection-examples.md test-*.md test-*.js --severity medium --json",
+    "prepublishOnly": "npm run test && npm run security:self-check"
+  },
+  "keywords": [
+    "security",
+    "prompt-injection",
+    "vulnerability-scanner",
+    "code-analysis",
+    "cli"
+  ],
+  "author": "pavanvamsi3",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "@huggingface/inference": "^4.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pavanvamsi3/prompt-cop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pavanvamsi3/prompt-cop/issues"
+  },
+  "homepage": "https://github.com/pavanvamsi3/prompt-cop#readme"
+}

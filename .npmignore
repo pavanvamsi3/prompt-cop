@@ -1,0 +1,25 @@
+assets/prompt-cop-terminal.gif
+
+# Development and documentation files
+assets/
+test/
+*.test.js
+*.md
+!README.md
+
+# Development dependencies
+.eslintrc*
+.prettierrc*
+jest.config.js
+
+# Git and CI files
+.git*
+.github/
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+.DS_Store
