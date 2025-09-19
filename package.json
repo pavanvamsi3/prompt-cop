@@ -1,6 +1,6 @@
 {
   "name": "prompt-cop",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "A lightweight security tool to detect potential prompt injection vulnerabilities in code files",
   "main": "index.js",
   "bin": {
